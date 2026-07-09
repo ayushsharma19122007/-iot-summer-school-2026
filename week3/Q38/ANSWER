@@ -1,0 +1,9 @@
+# Q38. LoRa & LPWAN – Long Range IoT
+
+**LPWAN (Low Power Wide Area Network)** is a wireless communication technology designed for IoT devices that need to send small amounts of data over long distances while consuming very little power. It is ideal for applications such as smart agriculture, environmental monitoring, and smart cities, where sensors may operate on batteries for several years.
+
+**LoRa (Long Range)** is one of the most popular LPWAN technologies. It achieves long-range communication by using a technique called the **Spreading Factor (SF)**. A higher spreading factor spreads the data over a longer time, making the signal more resistant to interference and allowing communication over distances of up to 15 km in rural areas. Although a higher spreading factor reduces the data rate, it significantly increases communication range and reliability while maintaining low power consumption.
+
+Compared to other wireless technologies, **LoRa** offers much longer communication distances than **Zigbee** and **Z-Wave**. Zigbee provides a range of around 10–100 meters and is mainly used for smart homes and industrial automation. Z-Wave offers a range of approximately 30–100 meters and is commonly used in home automation systems. In contrast, LoRa supports communication over several kilometers, making it the preferred choice for large outdoor IoT deployments.
+
+A real-world example in India is **Tata Communications' LoRa network**, which has been used for smart city applications such as smart street lighting, water meter monitoring, waste management, and agricultural sensor networks. Its long range, low power consumption, and scalability make LoRa an excellent technology for large-scale IoT deployments.
