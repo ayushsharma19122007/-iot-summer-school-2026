@@ -1,0 +1,12 @@
+# Q37. Wi-Fi Security for IoT
+
+Wi-Fi security is essential for IoT devices because they often transmit sensitive data over wireless networks. One common attack vector is **WPA2 vulnerabilities**. Although WPA2 is widely used, vulnerabilities such as the KRACK (Key Reinstallation Attack) exploit weaknesses in the WPA2 handshake process, allowing attackers to intercept or manipulate network traffic if devices are not patched. Another major threat is the **Evil Twin attack**, where an attacker creates a fake Wi-Fi access point with the same name (SSID) as a legitimate network. IoT devices may automatically connect to the fake network, allowing attackers to steal data, capture login credentials, or inject malicious commands.
+
+To improve the security of **ESP32** devices, developers should follow several best practices. Whenever possible, use **WPA3** instead of WPA2 because it provides stronger encryption and better protection against password-guessing attacks. Communication with cloud servers should always use **HTTPS/TLS** encryption. **Certificate pinning** can also be implemented so the ESP32 trusts only a specific server certificate, reducing the risk of man-in-the-middle attacks. Developers should also keep firmware updated, use strong and unique Wi-Fi passwords, disable unnecessary services, and securely store credentials using the ESP32's secure storage features.
+
+Hardcoding Wi-Fi passwords directly into the source code is dangerous because anyone with access to the code repository or compiled firmware may recover the credentials. If the source code is uploaded to a public GitHub repository, attackers can immediately obtain the Wi-Fi password and API keys, potentially compromising the entire network. Instead, sensitive information should be stored in separate configuration files (such as `config.h`), excluded from version control using `.gitignore`, or stored securely using encrypted storage or environment variables.
+
+**References:**
+
+1. Wi-Fi Alliance. *WPA3 Security*. https://www.wi-fi.org/discover-wi-fi/security
+2. Open Worldwide Application Security Project (OWASP). *IoT Security Guidance*. https://owasp.org/www-project-internet-of-things/
