@@ -1,7 +1,7 @@
 <div align="center">
 
-# 💡 Smart Street Light System
-### 🌙 Intelligent Street Lighting using **LDR + PIR Sensor**
+# 🌃 Smart Street Light (LDR + PIR)
+### *Automatic Street Lighting System using Light & Motion Detection*
 
 </div>
 
@@ -9,34 +9,38 @@
 
 # 🎯 Objective
 
-Develop an intelligent street light system that automatically controls lighting based on **day/night conditions** and **motion detection**, while logging every event with timestamps.
+Develop an intelligent street light system using an **LDR (Light Dependent Resistor)** and a **PIR Motion Sensor** that automatically controls street lighting based on ambient light and human movement.
 
 ---
 
-# ✨ Features
+# ✨ Key Features
 
-✅ **Day Mode**
-- ☀️ LED remains **OFF**
-- 🚫 Motion sensor is ignored
+🌞 **Day Mode**
+- Street light remains **OFF**
+- Motion sensor is disabled
 
-✅ **Night Mode**
-- 🌙 Motion detection becomes active
+🌙 **Night Mode**
+- Motion detection becomes active
+- System continuously monitors for movement
 
-✅ **Motion Detected**
-- 💡 LED turns **ON at 100% brightness**
+🚶 **Motion Detection**
+- LED turns **ON at full brightness (100%)**
+- Motion timer starts
 
-✅ **No Motion for 30 Seconds**
-- 🔅 LED automatically dims to **20% brightness**
+💤 **Power Saving Mode**
+- If no motion is detected for **30 seconds**
+- LED automatically dims to **20% brightness**
 
-✅ **Serial Logging**
-- 📝 Every event is recorded with a timestamp
+📟 **Real-Time Logging**
+- Every event is displayed on the **Serial Monitor**
+- Includes timestamps for easy monitoring
 
 ---
 
-# 🛠 Components Required
+# 🛠️ Components Required
 
 | Component | Quantity |
-|:---------|:--------:|
+|:-------------------------|:--------:|
 | Arduino Uno | 1 |
 | LDR (Photoresistor) | 1 |
 | 10kΩ Resistor | 1 |
@@ -51,7 +55,7 @@ Develop an intelligent street light system that automatically controls lighting 
 # 🔌 Circuit Connections
 
 | Component | Arduino Pin |
-|:-----------|:-----------:|
+|:---------------------------|:-----------:|
 | LDR Output | **A0** |
 | PIR Output | **D2** |
 | LED (+) | **D9 (PWM)** |
@@ -59,38 +63,38 @@ Develop an intelligent street light system that automatically controls lighting 
 
 ---
 
-# ⚙️ Working Principle
+# ⚙️ System Workflow
 
-## ☀️ Day Mode
+## 🌞 Daytime Operation
 
-- LDR value is **above the threshold**
-- Street light remains **OFF**
-- PIR sensor is ignored
+- LDR detects sufficient sunlight.
+- LED remains **OFF**.
+- PIR sensor input is ignored.
 
 ---
 
-## 🌙 Night Mode
+## 🌙 Nighttime Operation
 
-- LDR value falls **below the threshold**
-- Motion detection is enabled
+- LDR detects low light conditions.
+- Motion detection is activated.
 
 ---
 
 ## 🚶 Motion Detected
 
-- LED glows at **100% brightness**
-- Motion timer starts/reset
+- LED switches to **100% brightness**.
+- 30-second inactivity timer resets.
 
 ---
 
-## 😴 No Motion for 30 Seconds
+## 💤 No Motion for 30 Seconds
 
-- LED brightness reduces to **20%**
-- Saves power while keeping the street visible
+- LED brightness decreases to **20%**.
+- Conserves energy while maintaining visibility.
 
 ---
 
-# 📟 Sample Serial Output
+# 📟 Sample Serial Monitor Output
 
 ```text
 [00:00:02] EVENT: Night detected - Motion Detection Enabled
@@ -101,7 +105,7 @@ Develop an intelligent street light system that automatically controls lighting 
 
 ---
 
-# 📂 Project Structure
+# 📂 Project Directory
 
 ```text
 week3/
@@ -114,19 +118,19 @@ week3/
 
 ---
 
-# ✅ Expected Output
+# ✅ Expected Result
 
-✔️ Daylight → LED OFF
+✔️ Street light remains **OFF** during the daytime.
 
-✔️ Night → Motion Detection Enabled
+✔️ Motion detection is enabled automatically at night.
 
-✔️ Motion → LED ON at 100% Brightness
+✔️ LED glows at **100% brightness** whenever motion is detected.
 
-✔️ No Motion for 30 Seconds → LED Dimmed to 20%
+✔️ After **30 seconds** of no movement, LED brightness reduces to **20%**.
 
-✔️ All Events Logged to the Serial Monitor with Timestamps
+✔️ Every system event is logged to the **Serial Monitor** with timestamps.
 
-✔️ Circuit Diagram Stored in:
+✔️ Circuit schematic is saved in:
 
 ```text
 /week3/schematics/
@@ -136,8 +140,8 @@ week3/
 
 <div align="center">
 
-## 🚦 Smart • Automatic • Energy Efficient 🌍
+### 💡 Smart Lighting • Energy Efficient • Motion Activated
 
-**Made using Arduino Uno + LDR + PIR Sensor**
+**Built with Arduino Uno, LDR & PIR Motion Sensor**
 
 </div>
