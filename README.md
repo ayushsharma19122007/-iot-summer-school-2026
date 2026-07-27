@@ -12,6 +12,8 @@
 | Field | Information |
 |:------|:------------|
 | **Name** | **Ayush Sharma** |
+| **Education** | **Higher Secondary (Class XII) Graduate** |
+| **Program** | **IoT Summer School 2026** |
 
 ---
 
