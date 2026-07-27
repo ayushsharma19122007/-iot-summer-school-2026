@@ -1,52 +1,46 @@
 <div align="center">
 
-# 🌃 Smart Street Light (LDR + PIR)
-### *Automatic Street Lighting System using Light & Motion Detection*
+# 💡 Smart Street Light using Arduino
+### *Automatic Street Lighting with LDR & PIR Motion Sensor*
 
 </div>
 
 ---
 
-# 🎯 Objective
+# 🎯 Project Overview
 
-Develop an intelligent street light system using an **LDR (Light Dependent Resistor)** and a **PIR Motion Sensor** that automatically controls street lighting based on ambient light and human movement.
+This project demonstrates a **Smart Street Light System** using an **Arduino Uno**, an **LDR (Light Dependent Resistor)**, and a **PIR Motion Sensor**. The system automatically controls street lighting based on ambient light and motion detection.
+
+During the day, the street light remains **OFF**. At night, the PIR sensor becomes active. When motion is detected, the LED glows at **100% brightness**. If no motion is detected for **30 seconds**, the LED automatically dims to **20% brightness** to save energy.
+
+All important events are displayed on the **Serial Monitor** with timestamps.
 
 ---
 
-# ✨ Key Features
+# 🚀 Objectives
 
-🌞 **Day Mode**
-- Street light remains **OFF**
-- Motion sensor is disabled
+🌞 Detect day and night using an LDR.
 
-🌙 **Night Mode**
-- Motion detection becomes active
-- System continuously monitors for movement
+🚶 Detect human movement using a PIR sensor.
 
-🚶 **Motion Detection**
-- LED turns **ON at full brightness (100%)**
-- Motion timer starts
+💡 Automatically control LED brightness.
 
-💤 **Power Saving Mode**
-- If no motion is detected for **30 seconds**
-- LED automatically dims to **20% brightness**
+⚡ Save energy by dimming the light when no motion is detected.
 
-📟 **Real-Time Logging**
-- Every event is displayed on the **Serial Monitor**
-- Includes timestamps for easy monitoring
+🖥️ Display all events with timestamps on the Serial Monitor.
 
 ---
 
 # 🛠️ Components Required
 
 | Component | Quantity |
-|:-------------------------|:--------:|
+|:-----------------------------|:--------:|
 | Arduino Uno | 1 |
 | LDR (Photoresistor) | 1 |
-| 10kΩ Resistor | 1 |
+| 10k Ω Resistor | 1 |
 | PIR Motion Sensor (HC-SR501) | 1 |
 | LED | 1 |
-| 220Ω Resistor | 1 |
+| 220 Ω Resistor | 1 |
 | Breadboard | 1 |
 | Jumper Wires | As Required |
 
@@ -55,7 +49,7 @@ Develop an intelligent street light system using an **LDR (Light Dependent Resis
 # 🔌 Circuit Connections
 
 | Component | Arduino Pin |
-|:---------------------------|:-----------:|
+|:----------------------|:-----------:|
 | LDR Output | **A0** |
 | PIR Output | **D2** |
 | LED (+) | **D9 (PWM)** |
@@ -63,85 +57,164 @@ Develop an intelligent street light system using an **LDR (Light Dependent Resis
 
 ---
 
-# ⚙️ System Workflow
+# ⚙️ Working Principle
 
-## 🌞 Daytime Operation
+## ☀️ Step 1 – Day Detection
 
-- LDR detects sufficient sunlight.
-- LED remains **OFF**.
-- PIR sensor input is ignored.
+The Arduino continuously reads the LDR value.
 
----
+If the light intensity is **above the threshold**, the system enters **Day Mode**.
 
-## 🌙 Nighttime Operation
-
-- LDR detects low light conditions.
-- Motion detection is activated.
+- 💡 LED remains OFF
+- 🚫 PIR sensor is ignored
 
 ---
 
-## 🚶 Motion Detected
+## 🌙 Step 2 – Night Detection
 
-- LED switches to **100% brightness**.
-- 30-second inactivity timer resets.
+When the LDR value falls **below the threshold**, the system enters **Night Mode**.
+
+The PIR sensor becomes active and starts monitoring for motion.
 
 ---
 
-## 💤 No Motion for 30 Seconds
+## 🚶 Step 3 – Motion Detection
 
-- LED brightness decreases to **20%**.
-- Conserves energy while maintaining visibility.
+When the PIR sensor detects motion:
+
+- 💡 LED brightness is set to **100% (PWM = 255)**
+- ⏱️ Motion timer is reset
+- 🖥️ Event is printed on the Serial Monitor
+
+---
+
+## 😴 Step 4 – No Motion
+
+If no motion is detected for **30 seconds**:
+
+- 🔅 LED brightness reduces to **20% (PWM = 51)**
+- ⚡ Energy is saved while maintaining visibility
+
+---
+
+## 🖥️ Step 5 – Event Logging
+
+Every important event is displayed on the **Serial Monitor** with a timestamp in **HH:MM:SS** format.
+
+---
+
+# ✨ Features
+
+- 🌞 Automatic Day/Night detection
+- 🚶 PIR-based motion sensing
+- 💡 Automatic LED brightness control
+- 🔅 Energy-saving dim mode
+- ⏱️ Timestamped Serial Monitor logs
+- ⚡ PWM brightness control
+- 🔄 Continuous monitoring
 
 ---
 
 # 📟 Sample Serial Monitor Output
 
 ```text
-[00:00:02] EVENT: Night detected - Motion Detection Enabled
-[00:00:07] EVENT: Motion detected - LED ON (100%)
-[00:00:38] EVENT: No motion for 30 seconds - LED Dimmed (20%)
-[00:10:12] EVENT: Daylight detected - Street Light OFF
+[00:00:02] EVENT: DAYLIGHT - LED OFF
+[00:00:15] EVENT: Night Mode
+[00:00:20] EVENT: Motion Detected - LED FULL
+[00:00:50] EVENT: No Motion - LED DIM (20%)
 ```
 
 ---
 
-# 📂 Project Directory
+# 🌙 Operating Modes
+
+| Condition | LED Status |
+|:---------------------|:--------------------------|
+| Daylight | OFF |
+| Night (No Motion) | 20% Brightness |
+| Night (Motion Detected) | 100% Brightness |
+
+---
+
+# 🔄 Program Flow
 
 ```text
-week3/
-├── smart_street_light/
-│   ├── smart_street_light.ino
-│   └── README.md
-└── schematics/
-    └── smart_street_light_circuit.png
+Start
+   │
+   ▼
+Read LDR Value
+   │
+   ▼
+Daylight?
+   │
+ ┌─Yes──────────────► LED OFF
+ │
+ └─No
+      │
+      ▼
+Enable PIR Sensor
+      │
+      ▼
+Motion Detected?
+      │
+ ┌─Yes──────────────► LED 100%
+ │
+ └─No
+      │
+      ▼
+30 Seconds Passed?
+      │
+ ┌─Yes──────────────► LED 20%
+ │
+ └─No───────────────► Continue Monitoring
 ```
 
 ---
 
-# ✅ Expected Result
+# 🎓 Learning Outcomes
 
-✔️ Street light remains **OFF** during the daytime.
+- 🌞 Reading analog values using `analogRead()`
+- 🚶 Detecting motion with a PIR sensor
+- 💡 Controlling LED brightness using PWM (`analogWrite()`)
+- ⏱️ Using `millis()` for timing events
+- 🖥️ Displaying formatted timestamps on the Serial Monitor
+- ⚙️ Building an energy-efficient embedded system
 
-✔️ Motion detection is enabled automatically at night.
+---
 
-✔️ LED glows at **100% brightness** whenever motion is detected.
-
-✔️ After **30 seconds** of no movement, LED brightness reduces to **20%**.
-
-✔️ Every system event is logged to the **Serial Monitor** with timestamps.
-
-✔️ Circuit schematic is saved in:
+# 📂 Project Structure
 
 ```text
-/week3/schematics/
+smart_street_light/
+├── smart_street_light.ino
+└── README.md
 ```
+
+---
+
+# 🚀 Future Improvements
+
+- 🌐 Add Wi-Fi monitoring using ESP32
+- 📱 Send motion alerts to a mobile app
+- 📟 Display status on an LCD/OLED
+- ☀️ Automatically adjust brightness based on ambient light level
+- 🔋 Integrate a solar-powered battery system
+- 📊 Log daily activity to an SD card or cloud platform
+
+---
+
+# 👨‍💻 Author
+
+| Field | Information |
+|:------|:------------|
+| **Name** | **Ayush Sharma** |
 
 ---
 
 <div align="center">
 
-### 💡 Smart Lighting • Energy Efficient • Motion Activated
+### 🌞 Detect • Illuminate • Save Energy 🌙
 
-**Built with Arduino Uno, LDR & PIR Motion Sensor**
+**Powered by Arduino Uno, LDR & PIR Motion Sensor**
 
 </div>
